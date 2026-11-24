@@ -13,11 +13,16 @@ recs = [
  {'eid':2,'grade':'تالتة إعدادي','unit':'الوحدة الأولى','term':'الترم الأول','date':'23 نوفمبر 2026','typ':'امتحان/تدريب','link':'https://t.me/mo7amed_elgazar/1171','name':'امتحان الوحدة الأولى الدرس الأول (أنواع التفاعلات الكيميائية) علوم تالتة إعدادي 25 درجة'},
  {'eid':3,'grade':'تالتة إعدادي','unit':'الوحدة الأولى','term':'الترم الأول','date':'23 نوفمبر 2026','typ':'إجابات','link':'https://t.me/mo7amed_elgazar/1172','name':'نموذج إجابة امتحان الوحدة الأولى الدرس الأول (أنواع التفاعلات الكيميائية) علوم تالتة إعدادي من إعداد المعلم'},
  {'eid':4,'grade':'تالتة إعدادي','unit':'الوحدة الأولى','term':'الترم الأول','date':'23 نوفمبر 2026','typ':'مراجعة','link':'https://t.me/mo7amed_elgazar/1173','name':'ملخص الوحدة الأولى (التفاعلات الكيميائية وآثارها البيئية) علوم تالتة إعدادي'},
- {'eid':5,'grade':'أولى ثانوي','unit':'الوحدة الأولى','term':'الترم الأول','date':'24 نوفمبر 2026','typ':'مراجعة','link':'https://t.me/mohamedsciencem/83','name':'ملخص الوحدة الأولى: النظام البيئي المائي، العلوم المتكاملة أولى ثانوي'},
+ {'eid':5,'grade':'أولى ثانوي','unit':'الوحدة الأولى','term':'الترم الأول','date':'24 نوفمبر 2026','typ':'مراجعة','subj':'العلوم المتكاملة','link':'https://t.me/mohamedsciencem/83','name':'ملخص الوحدة الأولى: النظام البيئي المائي، العلوم المتكاملة أولى ثانوي'},
+ {'eid':6,'grade':'رابعة ابتدائي','unit':'الفصل الأول','term':'الترم الأول','date':'24 نوفمبر 2026','typ':'مراجعة','link':'https://t.me/mo7amed_elgazar/1174','name':'ملخص الفصل الأول: الطبيعة من حولنا، علوم رابعة ابتدائي'},
 ]
 
+def CNT(k):
+    n = sum(1 for r in recs if r['grade'] == k)
+    return 'ملف واحد' if n == 1 else f'{n} ملفات'
 GRADES = {
  'تالتة إعدادي': dict(slug='3prep', title='الصف تالتة إعدادي', short='تالتة إعدادي', stage='إعدادي', meta='علوم تالتة إعدادي', desc='امتحانات ومراجعات العلوم للصف الثالث الإعدادي الترم الأول.'),
+ 'رابعة ابتدائي': dict(slug='4prim', title='الصف الرابع الابتدائي', short='رابعة ابتدائي', stage='ابتدائي', meta='علوم رابعة ابتدائي', desc='ملخصات ومراجعات العلوم للصف الرابع الابتدائي الترم الأول.'),
  'أولى ثانوي': dict(slug='1sec', title='الصف أولى ثانوي', short='أولى ثانوي', stage='ثانوي', meta='علوم أولى ثانوي', desc='ملخصات ومراجعات العلوم للصف الأول الثانوي الترم الأول.'),
 }
 SVG_DOC = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/></svg>'
@@ -159,7 +164,7 @@ TOPBAR = """<div class="topbar"><div class="wrap">
 
 FOOT = f"""<footer><div class="wrap">
 <b>{esc(TEACHER)}</b> — امتحانات ومذكرات العلوم<br>
-المصدر الرسمي للملفات: قنوات تليجرام الخاصة بالمستر · آخر تحديث: 23 نوفمبر 2026
+المصدر الرسمي للملفات: قنوات تليجرام الخاصة بالمستر · آخر تحديث: {recs[-1]["date"]}
 </div></footer>
 </body></html>
 """
@@ -220,7 +225,7 @@ idx = head('ملفات العلوم | مستر محمد الجزار', 'كل ا�
 <header class="detail-head"><div class="wrap"><h1>ملفات العلوم</h1><p style="opacity:.9">من إعداد {esc(TEACHER)} — {len(recs)} ملفات</p></div></header>
 <section><div class="wrap">
 <div class="sec-head"><h2>الصفوف المتاحة</h2></div>
-<div class="cards">{''.join(f'<a class="grade-card" href="{BASE}/exams/{G["slug"]}"><h3>{G["title"]}</h3><p>{sum(1 for r in recs if r["grade"]==k)} ملفات · الترم الأول</p></a>' for k,G in GRADES.items() if any(r["grade"]==k for r in recs))}</div>
+<div class="cards">{''.join(f'<a class="grade-card" href="{BASE}/exams/{G["slug"]}"><h3>{G["title"]}</h3><p>{CNT(k)} · الترم الأول</p></a>' for k,G in GRADES.items() if any(r["grade"]==k for r in recs))}</div>
 <div class="sec-head" style="margin-top:26px"><h2>كل الملفات</h2></div>
 <div class="cards">{''.join(ecard(r) for r in recs)}</div>
 </div></section>
@@ -248,7 +253,7 @@ for r in recs:
 <h1 style="margin-top:10px">{esc(r['name'])}</h1></div></header>
 <section><div class="wrap">
 <div class="meta-table">
-<div class="row"><span class="k">المادة</span><span>العلوم</span></div>
+<div class="row"><span class="k">المادة</span><span>{esc(r.get("subj","العلوم"))}</span></div>
 <div class="row"><span class="k">الصف</span><span>{esc(r['grade'])} ({GRADES[r['grade']]['stage']})</span></div>
 <div class="row"><span class="k">الفصل الدراسي</span><span>{esc(r['term'])}</span></div>
 <div class="row"><span class="k">الوحدة</span><span>{esc(r['unit'])}</span></div>
@@ -277,7 +282,7 @@ cm = head('مجتمع معلمي المواد العلمية | مستر محمد
 """ + FOOT
 open(os.path.join(OUT, 'community.html'), 'w').write(cm)
 
-urls = [BASE + '/', BASE + '/exams/', BASE + '/exams/3prep', BASE + '/exams/1sec', BASE + '/community'] + [BASE + f'/exams/e{r["eid"]}' for r in recs]
+urls = [BASE + '/', BASE + '/exams/', BASE + '/exams/3prep', BASE + '/exams/1sec', BASE + '/exams/4prim', BASE + '/community'] + [BASE + f'/exams/e{r["eid"]}' for r in recs]
 open(os.path.join(OUT, 'sitemap.xml'), 'w').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + '\n'.join(f'<url><loc>{u}</loc></url>' for u in urls) + '\n</urlset>\n')
 open(os.path.join(OUT, 'robots.txt'), 'w').write('User-agent: *\nAllow: /\nSitemap: ' + BASE + '/sitemap.xml\n')
 open(os.path.join(OUT, 'googlee0bf8f8fe2eace5f.html'), 'w').write('google-site-verification: googlee0bf8f8fe2eace5f.html')
