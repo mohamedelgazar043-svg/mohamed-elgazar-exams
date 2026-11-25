@@ -16,6 +16,12 @@ recs = [
  {'eid':5,'grade':'أولى ثانوي','unit':'الوحدة الأولى','term':'الترم الأول','date':'24 نوفمبر 2026','typ':'مراجعة','subj':'العلوم المتكاملة','link':'https://t.me/mohamedsciencem/83','name':'ملخص الوحدة الأولى: النظام البيئي المائي، العلوم المتكاملة أولى ثانوي'},
  {'eid':6,'grade':'رابعة ابتدائي','unit':'الفصل الأول','term':'الترم الأول','date':'24 نوفمبر 2026','typ':'مراجعة','link':'https://t.me/mo7amed_elgazar/1174','name':'ملخص الفصل الأول: الطبيعة من حولنا، علوم رابعة ابتدائي'},
  {'eid':7,'grade':'أولى ثانوي','unit':'الوحدة الأولى','term':'الترم الأول','date':'24 نوفمبر 2026','typ':'امتحان/تدريب','subj':'العلوم المتكاملة','link':'https://t.me/mohamedsciencem/84','name':'اختبار الدرس الأول: الغلاف المائي على كوكب الأرض، العلوم المتكاملة أولى ثانوي'},
+ {'eid':8,'grade':'أولى ثانوي','unit':'الوحدة الأولى','term':'الترم الأول','date':'25 نوفمبر 2026','typ':'إجابات','subj':'العلوم المتكاملة','link':'https://t.me/mohamedsciencem/85','name':'إجابة اختبار الدرس الأول: الغلاف المائي على كوكب الأرض، العلوم المتكاملة أولى ثانوي'},
+ {'eid':9,'grade':'أولى ثانوي','unit':'الوحدة الأولى','term':'الترم الأول','date':'25 نوفمبر 2026','typ':'امتحان/تدريب','subj':'العلوم المتكاملة','link':'https://t.me/mohamedsciencem/86','name':'اختبار الدرس الثاني: الخواص الكيميائية للماء، العلوم المتكاملة أولى ثانوي'},
+ {'eid':10,'grade':'أولى ثانوي','unit':'الوحدة الأولى','term':'الترم الأول','date':'25 نوفمبر 2026','typ':'إجابات','subj':'العلوم المتكاملة','link':'https://t.me/mohamedsciencem/87','name':'إجابة اختبار الدرس الثاني: الخواص الكيميائية للماء، العلوم المتكاملة أولى ثانوي'},
+ {'eid':11,'grade':'سادسة ابتدائي','unit':'الفصل الأول','term':'الترم الأول','date':'25 نوفمبر 2026','typ':'مراجعة','link':'https://t.me/mo7amed_elgazar/1175','name':'ملخص الفصل الأول: شروط الاحتراق، علوم سادسة ابتدائي'},
+ {'eid':12,'grade':'سادسة ابتدائي','unit':'الفصل الأول','term':'الترم الأول','date':'25 نوفمبر 2026','typ':'امتحان/تدريب','link':'https://t.me/mo7amed_elgazar/1176','name':'امتحان الفصل الأول: شروط الاحتراق، علوم سادسة ابتدائي'},
+ {'eid':13,'grade':'سادسة ابتدائي','unit':'الفصل الأول','term':'الترم الأول','date':'25 نوفمبر 2026','typ':'إجابات','link':'https://t.me/mo7amed_elgazar/1177','name':'نموذج إجابة امتحان الفصل الأول: شروط الاحتراق، علوم سادسة ابتدائي'},
 ]
 
 def CNT(k):
@@ -24,6 +30,7 @@ def CNT(k):
 GRADES = {
  'تالتة إعدادي': dict(slug='3prep', title='الصف تالتة إعدادي', short='تالتة إعدادي', stage='إعدادي', meta='علوم تالتة إعدادي', desc='امتحانات ومراجعات العلوم للصف الثالث الإعدادي الترم الأول.'),
  'رابعة ابتدائي': dict(slug='4prim', title='الصف الرابع الابتدائي', short='رابعة ابتدائي', stage='ابتدائي', meta='علوم رابعة ابتدائي', desc='ملخصات ومراجعات العلوم للصف الرابع الابتدائي الترم الأول.'),
+ 'سادسة ابتدائي': dict(slug='6prim', title='الصف السادس الابتدائي', short='سادسة ابتدائي', stage='ابتدائي', meta='علوم سادسة ابتدائي', desc='ملخصات وامتحانات العلوم للصف السادس الابتدائي الترم الأول.'),
  'أولى ثانوي': dict(slug='1sec', title='الصف أولى ثانوي', short='أولى ثانوي', stage='ثانوي', meta='علوم أولى ثانوي', desc='ملخصات ومراجعات العلوم للصف الأول الثانوي الترم الأول.'),
 }
 SVG_DOC = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/></svg>'
@@ -283,7 +290,7 @@ cm = head('مجتمع معلمي المواد العلمية | مستر محمد
 """ + FOOT
 open(os.path.join(OUT, 'community.html'), 'w').write(cm)
 
-urls = [BASE + '/', BASE + '/exams/', BASE + '/exams/3prep', BASE + '/exams/1sec', BASE + '/exams/4prim', BASE + '/community'] + [BASE + f'/exams/e{r["eid"]}' for r in recs]
+urls = [BASE + '/', BASE + '/exams/', BASE + '/exams/3prep', BASE + '/exams/1sec', BASE + '/exams/4prim', BASE + '/exams/6prim', BASE + '/community'] + [BASE + f'/exams/e{r["eid"]}' for r in recs]
 open(os.path.join(OUT, 'sitemap.xml'), 'w').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + '\n'.join(f'<url><loc>{u}</loc></url>' for u in urls) + '\n</urlset>\n')
 open(os.path.join(OUT, 'robots.txt'), 'w').write('User-agent: *\nAllow: /\nSitemap: ' + BASE + '/sitemap.xml\n')
 open(os.path.join(OUT, 'googlee0bf8f8fe2eace5f.html'), 'w').write('google-site-verification: googlee0bf8f8fe2eace5f.html')
