@@ -22,15 +22,25 @@ recs = [
  {'eid':11,'grade':'سادسة ابتدائي','unit':'الفصل الأول','term':'الترم الأول','date':'25 نوفمبر 2026','typ':'مراجعة','link':'https://t.me/mo7amed_elgazar/1175','name':'ملخص الفصل الأول: شروط الاحتراق، علوم سادسة ابتدائي'},
  {'eid':12,'grade':'سادسة ابتدائي','unit':'الفصل الأول','term':'الترم الأول','date':'25 نوفمبر 2026','typ':'امتحان/تدريب','link':'https://t.me/mo7amed_elgazar/1176','name':'امتحان الفصل الأول: شروط الاحتراق، علوم سادسة ابتدائي'},
  {'eid':13,'grade':'سادسة ابتدائي','unit':'الفصل الأول','term':'الترم الأول','date':'25 نوفمبر 2026','typ':'إجابات','link':'https://t.me/mo7amed_elgazar/1177','name':'نموذج إجابة امتحان الفصل الأول: شروط الاحتراق، علوم سادسة ابتدائي'},
+ {'eid':14,'grade':'رابعة ابتدائي','unit':'مراجعة شهر نوفمبر','term':'الترم الأول','month':'نوفمبر 2026','date':'25 نوفمبر 2026','typ':'مراجعة شهرية','link':'https://t.me/mo7amed_elgazar/1178','name':'مراجعة بيت العلوم: ملخص وأسئلة شهر نوفمبر، علوم رابعة ابتدائي'},
+ {'eid':15,'grade':'خامسة ابتدائي','unit':'مراجعة شهر نوفمبر','term':'الترم الأول','month':'نوفمبر 2026','date':'25 نوفمبر 2026','typ':'مراجعة شهرية','link':'https://t.me/mo7amed_elgazar/1179','name':'مراجعة بيت العلوم: تدريبات وأسئلة شهر نوفمبر، علوم خامسة ابتدائي'},
+ {'eid':16,'grade':'سادسة ابتدائي','unit':'مراجعة شهر نوفمبر','term':'الترم الأول','month':'نوفمبر 2026','date':'25 نوفمبر 2026','typ':'مراجعة شهرية','link':'https://t.me/mo7amed_elgazar/1180','name':'مراجعة بيت العلوم: تدريبات وأسئلة شهر نوفمبر، علوم سادسة ابتدائي'},
+ {'eid':17,'grade':'أولى إعدادي','unit':'مراجعة شهر نوفمبر','term':'الترم الأول','month':'نوفمبر 2026','date':'25 نوفمبر 2026','typ':'مراجعة شهرية','link':'https://t.me/mo7amed_elgazar/1181','name':'مراجعة بيت العلوم: ملخص وأسئلة شهر نوفمبر، علوم أولى إعدادي'},
+ {'eid':18,'grade':'تانية إعدادي','unit':'مراجعة شهر نوفمبر','term':'الترم الأول','month':'نوفمبر 2026','date':'25 نوفمبر 2026','typ':'مراجعة شهرية','link':'https://t.me/mo7amed_elgazar/1182','name':'مراجعة بيت العلوم: مراجعة نوفمبر، علوم تانية إعدادي'},
+ {'eid':19,'grade':'تالتة إعدادي','unit':'مراجعة شهر نوفمبر','term':'الترم الأول','month':'نوفمبر 2026','date':'25 نوفمبر 2026','typ':'مراجعة شهرية','link':'https://t.me/mo7amed_elgazar/1183','name':'مراجعة بيت العلوم: مراجعة ما تم دراسته حتى نهاية نوفمبر، علوم تالتة إعدادي'},
+ {'eid':20,'grade':'أولى ثانوي','unit':'مراجعة شهر نوفمبر','term':'الترم الأول','month':'نوفمبر 2026','date':'25 نوفمبر 2026','typ':'مراجعة شهرية','link':'https://t.me/mohamedsciencem/88','name':'مراجعة بيت العلوم: ملخص وأسئلة شهر نوفمبر، العلوم المتكاملة أولى ثانوي','subj':'العلوم المتكاملة'},
 ]
 
 def CNT(k):
     n = sum(1 for r in recs if r['grade'] == k)
     return 'ملف واحد' if n == 1 else f'{n} ملفات'
 GRADES = {
- 'تالتة إعدادي': dict(slug='3prep', title='الصف تالتة إعدادي', short='تالتة إعدادي', stage='إعدادي', meta='علوم تالتة إعدادي', desc='امتحانات ومراجعات العلوم للصف الثالث الإعدادي الترم الأول.'),
  'رابعة ابتدائي': dict(slug='4prim', title='الصف الرابع الابتدائي', short='رابعة ابتدائي', stage='ابتدائي', meta='علوم رابعة ابتدائي', desc='ملخصات ومراجعات العلوم للصف الرابع الابتدائي الترم الأول.'),
+ 'خامسة ابتدائي': dict(slug='5prim', title='الصف الخامس الابتدائي', short='خامسة ابتدائي', stage='ابتدائي', meta='علوم خامسة ابتدائي', desc='مراجعات العلوم للصف الخامس الابتدائي الترم الأول.'),
  'سادسة ابتدائي': dict(slug='6prim', title='الصف السادس الابتدائي', short='سادسة ابتدائي', stage='ابتدائي', meta='علوم سادسة ابتدائي', desc='ملخصات وامتحانات العلوم للصف السادس الابتدائي الترم الأول.'),
+ 'أولى إعدادي': dict(slug='1prep', title='الصف الأول الإعدادي', short='أولى إعدادي', stage='إعدادي', meta='علوم أولى إعدادي', desc='مراجعات العلوم للصف الأول الإعدادي الترم الأول.'),
+ 'تانية إعدادي': dict(slug='2prep', title='الصف الثاني الإعدادي', short='تانية إعدادي', stage='إعدادي', meta='علوم تانية إعدادي', desc='مراجعات العلوم للصف الثاني الإعدادي الترم الأول.'),
+ 'تالتة إعدادي': dict(slug='3prep', title='الصف تالتة إعدادي', short='تالتة إعدادي', stage='إعدادي', meta='علوم تالتة إعدادي', desc='امتحانات ومراجعات العلوم للصف الثالث الإعدادي الترم الأول.'),
  'أولى ثانوي': dict(slug='1sec', title='الصف أولى ثانوي', short='أولى ثانوي', stage='ثانوي', meta='علوم أولى ثانوي', desc='ملخصات ومراجعات العلوم للصف الأول الثانوي الترم الأول.'),
 }
 SVG_DOC = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/></svg>'
@@ -39,6 +49,7 @@ SVG_BOOK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-wi
 SVG_FLASK = '<svg viewBox="0 0 24 24" fill="none" stroke="#3a2a05" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6"/><path d="M10 3v6l-5 9c-.8 1.5.4 3 2.1 3h9.8c1.7 0 2.9-1.5 2.1-3l-5-9V3"/><path d="M7.5 15h9"/></svg>'
 TYPES = {'امتحان/تدريب':('امتحان','#0b6e4f','#e8f5f0',SVG_DOC),
          'إجابات':('نموذج إجابة','#0a4d8f','#e9f1fa',SVG_CHECK),
+         'مراجعة شهرية':('مراجعة بيت العلوم · نوفمبر','#6a3fb0','#f0eaf9',SVG_BOOK),
          'مراجعة':('مراجعة/ملخص','#9a6a00','#fbf3e0',SVG_BOOK)}
 
 TG = 'https://t.me/mo7amed_elgazar'
@@ -265,6 +276,7 @@ for r in recs:
 <div class="row"><span class="k">الصف</span><span>{esc(r['grade'])} ({GRADES[r['grade']]['stage']})</span></div>
 <div class="row"><span class="k">الفصل الدراسي</span><span>{esc(r['term'])}</span></div>
 <div class="row"><span class="k">الوحدة</span><span>{esc(r['unit'])}</span></div>
+{('<div class="row"><span class="k">الشهر</span><span>'+esc(r['month'])+'</span></div>') if r.get('month') else ''}
 <div class="row"><span class="k">النوع</span><span>{esc(lbl)}</span></div>
 <div class="row"><span class="k">تاريخ النشر</span><span>{esc(r['date'])}</span></div>
 <div class="row"><span class="k">الإعداد والمصدر</span><span>إعداد: مستر محمد الجزار</span></div>
@@ -290,7 +302,7 @@ cm = head('مجتمع معلمي المواد العلمية | مستر محمد
 """ + FOOT
 open(os.path.join(OUT, 'community.html'), 'w').write(cm)
 
-urls = [BASE + '/', BASE + '/exams/', BASE + '/exams/3prep', BASE + '/exams/1sec', BASE + '/exams/4prim', BASE + '/exams/6prim', BASE + '/community'] + [BASE + f'/exams/e{r["eid"]}' for r in recs]
+urls = [BASE + '/', BASE + '/exams/'] + [BASE + '/exams/' + G['slug'] for k, G in GRADES.items() if any(r['grade'] == k for r in recs)] + [BASE + '/community'] + [BASE + f'/exams/e{r["eid"]}' for r in recs]
 open(os.path.join(OUT, 'sitemap.xml'), 'w').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + '\n'.join(f'<url><loc>{u}</loc></url>' for u in urls) + '\n</urlset>\n')
 open(os.path.join(OUT, 'robots.txt'), 'w').write('User-agent: *\nAllow: /\nSitemap: ' + BASE + '/sitemap.xml\n')
 open(os.path.join(OUT, 'googlee0bf8f8fe2eace5f.html'), 'w').write('google-site-verification: googlee0bf8f8fe2eace5f.html')
