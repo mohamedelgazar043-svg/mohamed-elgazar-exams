@@ -449,6 +449,39 @@ for r in recs:
 
 # COMMUNITY
 def cl(n, u, k): return f'<a class="cm-l {k}" href="{esc(u)}" target="_blank" rel="noopener">{esc(n)}</a>'
+
+SUBJ = [
+ ('المجتمع العام', [('فيسبوك','المجتمع الرئيسي','https://www.facebook.com/share/g/18FELAupsn/'),('فيسبوك','بيت المعلمين (عام)','https://www.facebook.com/share/g/1c9RQN5jXY/'),('فيسبوك','مُعلّمي الحصة','https://www.facebook.com/share/g/18wWnYSGyU/'),('فيسبوك','بيت أولياء الأمور','https://www.facebook.com/share/g/1MPLDakK76/')]),
+ ('العلوم', [('فيسبوك','مجموعة العلوم','https://www.facebook.com/share/g/18pDyms9sw/')] + [('تليجرام','قناة/مجموعة العلوم','https://t.me/teacher_s_e')] + [('واتساب',n,u) for n,u,k in COMM[0][1] if k=='wa']),
+ ('العلوم المتكاملة', [('فيسبوك','مجموعة العلوم المتكاملة','https://www.facebook.com/share/g/1E3jr6cEhb/'),('تليجرام','العلوم المتكاملة','https://t.me/teacher_s_mm')] + [('واتساب',n,u) for n,u,k in COMM[1][1] if k=='wa']),
+ ('الأحياء', [('فيسبوك','مجموعة الأحياء','https://www.facebook.com/share/g/1CqjWjEs3K/'),('فيسبوك','مجموعة الأحياء (رابط آخر)','https://www.facebook.com/share/g/18QdaEeFGb/'),('تليجرام','الأحياء','https://t.me/teacher_a7iaa')] + [('واتساب',n,u) for n,u,k in COMM[2][1] if k=='wa']),
+ ('الكيمياء', [('فيسبوك','مجموعة الكيمياء','https://www.facebook.com/share/g/1L6SXdvNHV/'),('فيسبوك','مجموعة الكيمياء (رابط آخر)','https://www.facebook.com/share/g/18YtBzawzN/'),('تليجرام','الكيمياء','https://t.me/teacher_c7')] + [('واتساب',n,u) for n,u,k in COMM[3][1] if k=='wa']),
+ ('الفيزياء', [('فيسبوك','مجموعة الفيزياء','https://www.facebook.com/share/g/1L6SXdvNHV/'),('فيسبوك','مجموعة الفيزياء (رابط آخر)','https://www.facebook.com/share/g/1L5x5q2vx9/'),('تليجرام','الفيزياء','https://t.me/teacher_p7')] + [('واتساب',n,u) for n,u,k in COMM[4][1] if k=='wa']),
+ ('الأونلاين', [('فيسبوك','مجموعة الأونلاين','https://www.facebook.com/share/g/1EcjepZALZ/'),('فيسبوك','مجموعة الأونلاين (رابط آخر)','https://www.facebook.com/share/g/18aBnGvpUU/'),('تليجرام','الأونلاين','https://telegram.me/scienceoo')] + [('واتساب',n,u) for n,u,k in COMM[5][1] if k=='wa']),
+]
+PLAT = [('فيسبوك','fb','مجموعات فيسبوك'),('تليجرام','tg','مجموعات وقنوات تليجرام'),('واتساب','wa','مجموعات واتساب')]
+def _lab(plat, sname, n):
+    return n if sname=='المجتمع العام' else (sname + ' · ' + n if n in ('واتساب','تليجرام') or n.startswith('واتساب') else n)
+def plat_view():
+    out=''
+    for pl,k,title in PLAT:
+        items=[]
+        for sname, ls in SUBJ:
+            for p,n,u in ls:
+                if p==pl: items.append((sname,n,u))
+        links=''.join(cl(('%s · %s'%(sn,n) if sn!='المجتمع العام' and not n.startswith(sn) and sn not in n else n), u, k) for sn,n,u in items)
+        out+='<div class="sec-head" style="margin-top:22px"><h2>'+esc(title)+'</h2></div><div class="cm-card"><div class="cm-links">'+links+'</div></div>'
+    return out
+def subj_view():
+    cards=''
+    for sname, ls in SUBJ:
+        rows=''
+        for pl,k,title in PLAT:
+            L=[(n,u) for p,n,u in ls if p==pl]
+            if L: rows+=''.join(cl(((pl+(' (رابط آخر)' if 'آخر' in n else '')) if (sname!='المجتمع العام' and pl in ('فيسبوك','تليجرام')) else n),u,k) for n,u in L)
+        cards+='<div class="cm-card"><h3>'+esc(sname)+'</h3><div class="cm-links">'+rows+'</div></div>'
+    return '<div class="cm-grid">'+cards+'</div>'
+def cl(n, u, k): return f'<a class="cm-l {k}" href="{esc(u)}" target="_blank" rel="noopener">{esc(n)}</a>'
 cm = head('مجتمع معلمي المواد العلمية | مستر محمد الجزار', 'روابط مجموعات وقنوات معلمي العلوم والمواد العلمية على فيسبوك وواتساب وتليجرام.', BASE + '/community',
           crumbs_ld([('الرئيسية', BASE + '/'), ('المجتمع', BASE + '/community')])) + topbar('comm') + f"""
 <div class="wrap"><nav class="crumbs" aria-label="مسار التنقل"><a href="{BASE}/">الرئيسية</a> ‹ المجتمع</nav></div>
@@ -456,10 +489,10 @@ cm = head('مجتمع معلمي المواد العلمية | مستر محمد
 <section><div class="wrap">
 <div class="sec-head"><h2>تابع {esc(TEACHER)}</h2></div>
 <div class="cm-card"><div class="cm-links">{''.join(cl(*x) for x in FOLLOW)}</div></div>
-<div class="sec-head" style="margin-top:26px"><h2>مجموعات الفيسبوك</h2></div>
-<div class="fbgrid">{''.join(f'<a class="fbpill" href="{esc(u)}" target="_blank" rel="noopener">{esc(n)}</a>' for n, u in FB)}</div>
-<div class="sec-head" style="margin-top:26px"><h2>مجموعات وقنوات المواد</h2></div>
-<div class="cm-grid">{''.join('<div class="cm-card"><h3>'+esc(t)+'</h3><div class="cm-links">'+''.join(cl(*x) for x in ls)+'</div></div>' for t, ls in COMM)}</div>
+<style>.cm-switch{{display:flex;gap:8px;margin:18px 0 4px}}</style><div class="cm-switch" role="group" aria-label="طريقة العرض"><button type="button" class="fchip cmv" aria-pressed="true" data-v="plat">حسب المنصة</button><button type="button" class="fchip cmv" aria-pressed="false" data-v="subj">حسب المادة</button></div>
+<div id="v-plat">{plat_view()}</div>
+<div id="v-subj"><div class="sec-head" style="margin-top:22px"><h2>حسب المادة</h2></div>{subj_view()}</div>
+<script>(function(){{var bs=document.querySelectorAll('.cmv'),p=document.getElementById('v-plat'),s=document.getElementById('v-subj');s.style.display='none';[].forEach.call(bs,function(b){{b.addEventListener('click',function(){{var v=b.getAttribute('data-v');[].forEach.call(bs,function(x){{x.setAttribute('aria-pressed',x===b?'true':'false')}});p.style.display=v==='plat'?'':'none';s.style.display=v==='subj'?'':'none'}})}})}})();</script>
 </div></section>
 """ + FOOT
 open(os.path.join(OUT, 'community.html'), 'w').write(cm)
